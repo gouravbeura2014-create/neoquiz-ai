@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width,
+initial-scale=1.0">
+
+<title>Quiz Results</title>
+
+<link rel="preconnect"
+href="https://fonts.googleapis.com">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+}
+
+body{
+
+background:linear-gradient(
+135deg,
+#0f172a,
+#1e293b,
+#312e81
+);
+
+color:white;
+
+min-height:100vh;
+
+padding:20px;
+
+overflow-x:hidden;
+
+}
+
+.container{
+
+max-width:900px;
+
+margin:auto;
+
+}
+
+.result-card{
+
+background:rgba(255,255,255,.08);
+
+padding:30px;
+
+border-radius:30px;
+
+text-align:center;
+
+backdrop-filter:blur(20px);
+
+animation:slideUp .8s ease;
+
+}
+
+@keyframes slideUp{
+
+from{
+
+opacity:0;
+
+transform:
+translateY(40px);
+
+}
+
+to{
+
+opacity:1;
+
+transform:
+translateY(0);
+
+}
+
+}
+
+.trophy{
+
+font-size:80px;
+
+animation:bounce 2s infinite;
+
+}
+
+@keyframes bounce{
+
+0%,100%{
+transform:
+translateY(0);
+}
+
+50%{
+transform:
+translateY(-12px);
+}
+
+}
+
+.result-title{
+
+font-size:32px;
+
+font-weight:800;
+
+margin-top:15px;
+
+}
+
+.result-sub{
+
+color:#cbd5e1;
+
+margin-top:10px;
+
+}
+
+.score{
+
+font-size:70px;
+
+font-weight:800;
+
+margin-top:25px;
+
+color:#60a5fa;
+
+}
+
+.stats{
+
+display:grid;
+
+grid-template-columns:
+repeat(2,1fr);
+
+gap:15px;
+
+margin-top:25px;
+
+}
+
+.stat{
+
+background:rgba(255,255,255,.06);
+
+padding:20px;
+
+border-radius:20px;
+
+text-align:center;
+
+}
+
+.stat-number{
+
+font-size:30px;
+
+font-weight:800;
+
+color:#22c55e;
+
+}
+
+.stat-label{
+
+margin-top:5px;
+
+font-size:13px;
+
+color:#cbd5e1;
+
+}
+
+.section-title{
+
+font-size:22px;
+
+font-weight:700;
+
+margin-top:35px;
+
+margin-bottom:15px;
+
+}
+
+.badges{
+
+display:flex;
+
+gap:12px;
+
+overflow:auto;
+
+padding-bottom:10px;
+
+}
+
+.badges::-webkit-scrollbar{
+
+display:none;
+
+}
+
+.badge{
+
+min-width:150px;
+
+padding:20px;
+
+border-radius:20px;
+
+background:rgba(255,255,255,.06);
+
+text-align:center;
+
+}
+
+.badge-icon{
+
+font-size:35px;
+
+margin-bottom:8px;
+
+}
+
+.breakdown{
+
+background:rgba(255,255,255,.06);
+
+padding:20px;
+
+border-radius:20px;
+
+margin-top:10px;
+
+}
+
+.row{
+
+display:flex;
+
+justify-content:space-between;
+
+margin-bottom:15px;
+
+}
+
+.progress{
+
+height:12px;
+
+background:#334155;
+
+border-radius:20px;
+
+overflow:hidden;
+
+}
+
+.fill{
+
+height:100%;
+
+background:
+linear-gradient(
+90deg,
+#06b6d4,
+#3b82f6
+);
+
+}
+
+.buttons{
+
+display:flex;
+
+gap:12px;
+
+margin-top:30px;
+
+flex-wrap:wrap;
+
+}
+
+.btn{
+
+flex:1;
+
+padding:15px;
+
+border:none;
+
+border-radius:15px;
+
+cursor:pointer;
+
+font-weight:700;
+
+}
+
+.play{
+
+background:#2563eb;
+color:white;
+}
+
+.home{
+
+background:#475569;
+color:white;
+}
+
+@media(max-width:700px){
+
+.stats{
+grid-template-columns:1fr;
+}
+
+.score{
+font-size:50px;
+}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="result-card">
+
+<div class="trophy">
+🏆
+</div>
+
+<div class="result-title">
+Quiz Completed!
+</div>
+
+<div class="result-sub">
+Amazing effort. Keep learning and keep climbing the leaderboard.
+</div>
+
+<div class="score"
+id="finalScore">
+125
+</div>
+
+</div>
+
+<div class="stats">
+
+<div class="stat">
+
+<div class="stat-and number">
+92%
+</div>
+
+<div class="stat-label">
+Accuracy
+</div>
+
+</div>
+
+<div class="stat">
+
+<div class="stat-number">
++125
+</div>
+
+<div class="stat-label">
+XP Earned
+</div>
+
+</div>
+
+<div class="stat">
+
+<div class="stat-number">
+12
+</div>
+
+<div class="stat-label">
+Correct Answers
+</div>
+
+</div>
+
+<div class="stat">
+
+<div class="stat-number">
+🔥 5
+</div>
+
+<div class="stat-label">
+Streak Bonus
+</div>
+
+</div>
+
+</div>
+
+<h2 class="section-title">
+🏅 New Badges
+</h2>
+
+<div class="badges">
+
+<div class="badge">
+
+<div class="badge-icon">
+🔥
+</div>
+
+<div>
+7 Day Streak
+</div>
+
+</div>
+
+<div class="badge">
+
+<div class="badge-icon">
+⚡
+</div>
+
+<div>
+Fast Thinker
+</div>
+
+</div>
+
+<div class="badge">
+
+<div class="badge-icon">
+🎯
+</div>
+
+<div>
+90% Accuracy
+</div>
+
+</div>
+  <!-- PERFORMANCE BREAKDOWN -->
+
+<h2 class="section-title">
+📊 Performance Breakdown
+</h2>
+
+<div class="breakdown">
+
+<div class="row">
+
+<span>
+Correct Answers
+</span>
+
+<span>
+12 / 15
+</span>
+
+</div>
+
+<div class="progress">
+
+<div class="fill"
+style="width:80%;">
+</div>
+
+</div>
+
+<br>
+
+<div class="row">
+
+<span>
+Speed Bonus
+</span>
+
+<span>
+75%
+</span>
+
+</div>
+
+<div class="progress">
+
+<div class="fill"
+style="width:75%;">
+</div>
+
+</div>
+
+<br>
+
+<div class="row">
+
+<span>
+Quiz Completion
+</span>
+
+<span>
+100%
+</span>
+
+</div>
+
+<div class="progress">
+
+<div class="fill"
+style="width:100%;">
+</div>
+
+</div>
+
+</div>
+
+<!-- CONFETTI AREA -->
+
+<div id="confetti"></div>
+
+<!-- ACTION BUTTONS -->
+
+<div class="buttons">
+
+<button
+class="btn play"
+onclick="playAgain()">
+
+🔄 Play Again
+
+</button>
+
+<button
+class="btn home"
+onclick="goHome()">
+
+🏠 Home
+
+</button>
+
+</div>
+
+</div>
+
+<script>
+
+// SCORE ANIMATION
+
+let current = 0;
+
+let target = 125;
+
+const scoreElement =
+document.getElementById(
+"finalScore"
+);
+
+const scoreInterval =
+setInterval(()=>{
+
+current++;
+
+scoreElement.innerText =
+current;
+
+if(current >= target){
+
+clearInterval(
+scoreInterval
+);
+
+}
+
+},15);
+
+// CONFETTI
+
+const confetti =
+document.getElementById(
+"confetti"
+);
+
+for(let i=0;i<60;i++){
+
+const piece =
+document.createElement("div");
+
+piece.style.position =
+"fixed";
+
+piece.style.width =
+"10px";
+
+piece.style.height =
+"10px";
+
+piece.style.borderRadius =
+"50%";
+
+piece.style.left =
+Math.random()*100+"vw";
+
+piece.style.top =
+"-20px";
+
+piece.style.opacity =
+"0.8";
+
+piece.style.background =
+`hsl(${Math.random()*360},
+80%,60%)`;
+
+piece.style.animation =
+`fall ${Math.random()*4+3}s linear infinite`;
+
+piece.style.animationDelay =
+Math.random()*3+"s";
+
+confetti.appendChild(piece);
+
+}
+
+const style =
+document.createElement(
+"style"
+);
+
+style.innerHTML =
+
+`
+@keyframes fall{
+
+from{
+
+transform:
+translateY(-20px)
+rotate(0deg);
+
+}
+
+to{
+
+transform:
+translateY(120vh)
+rotate(720deg);
+
+}
+
+}
+`;
+
+document.head.appendChild(
+style
+);
+
+// SAVE SCORE
+
+localStorage.setItem(
+"lastScore",
+125
+);
+
+localStorage.setItem(
+"lastAccuracy",
+92
+);
+
+// PLAY AGAIN
+
+function playAgain(){
+
+window.location.href =
+"quiz.html";
+
+}
+
+// HOME
+
+function goHome(){
+
+window.location.href =
+"index.html";
+
+}
+
+// AUTO BADGE POPUP
+
+setTimeout(()=>{
+
+alert(
+"🎉 New Badge Unlocked: Fast Thinker!"
+);
+
+},1500);
+
+</script>
+
+</body>
+
+</html>
+
+</div>

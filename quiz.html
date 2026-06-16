@@ -1,0 +1,813 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width,
+initial-scale=1.0">
+
+<title>NeoQuiz Pro - Quiz</title>
+
+<link rel="preconnect"
+href="https://fonts.googleapis.com">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+}
+
+body{
+
+background:linear-gradient(
+135deg,
+#0f172a,
+#1e293b,
+#312e81
+);
+
+color:white;
+
+min-height:100vh;
+
+padding:20px;
+
+}
+
+.top-bar{
+
+display:flex;
+
+justify-content:space-between;
+
+align-items:center;
+
+margin-bottom:20px;
+
+}
+
+.back-btn{
+
+font-size:24px;
+
+cursor:pointer;
+
+}
+
+.score-box{
+
+background:rgba(255,255,255,.08);
+
+padding:10px 18px;
+
+border-radius:15px;
+
+font-size:14px;
+
+font-weight:700;
+
+}
+
+.progress-container{
+
+width:100%;
+
+height:12px;
+
+background:#334155;
+
+border-radius:50px;
+
+overflow:hidden;
+
+margin-bottom:20px;
+
+}
+
+.progress{
+
+width:20%;
+
+height:100%;
+
+background:linear-gradient(
+90deg,
+#06b6d4,
+#3b82f6
+);
+
+transition:.5s;
+
+}
+
+.quiz-info{
+
+display:flex;
+
+justify-content:space-between;
+
+margin-bottom:20px;
+
+font-size:13px;
+
+color:#cbd5e1;
+
+}
+
+.question-card{
+
+background:rgba(255,255,255,.08);
+
+backdrop-filter:blur(15px);
+
+padding:25px;
+
+border-radius:25px;
+
+margin-bottom:20px;
+
+animation:slideUp .6s ease;
+
+}
+
+@keyframes slideUp{
+
+from{
+opacity:0;
+transform:translateY(30px);
+}
+
+to{
+opacity:1;
+transform:translateY(0);
+}
+
+}
+
+.question{
+
+font-size:20px;
+
+font-weight:700;
+
+line-height:1.6;
+
+}
+
+.options{
+
+display:flex;
+
+flex-direction:column;
+
+gap:15px;
+
+}
+
+.option{
+
+padding:18px;
+
+background:rgba(255,255,255,.07);
+
+border-radius:18px;
+
+cursor:pointer;
+
+transition:.3s;
+
+border:2px solid transparent;
+
+}
+
+.option:hover{
+
+transform:translateY(-4px);
+
+border-color:#3b82f6;
+
+}
+
+.correct{
+
+background:#14532d !important;
+
+border-color:#22c55e !important;
+
+}
+
+.wrong{
+
+background:#7f1d1d !important;
+
+border-color:#ef4444 !important;
+
+}
+
+.explanation{
+
+display:none;
+
+margin-top:20px;
+
+background:rgba(255,255,255,.07);
+
+padding:20px;
+
+border-radius:18px;
+
+font-size:14px;
+
+line-height:1.7;
+
+}
+
+.explanation.show{
+
+display:block;
+
+}
+
+.buttons{
+
+display:flex;
+
+gap:10px;
+
+margin-top:20px;
+
+flex-wrap:wrap;
+
+}
+
+.btn{
+
+padding:12px 20px;
+
+border:none;
+
+border-radius:15px;
+
+cursor:pointer;
+
+font-weight:700;
+
+}
+
+.skip{
+
+background:#475569;
+color:white;
+}
+
+.bookmark{
+
+background:#f59e0b;
+color:white;
+}
+
+.next{
+
+background:#2563eb;
+color:white;
+}
+
+.xp-box{
+
+margin-top:20px;
+
+text-align:center;
+
+font-weight:700;
+
+font-size:16px;
+
+color:#60a5fa;
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="top-bar">
+
+<div class="back-btn">
+←
+</div>
+
+<div class="score-box">
+Score:
+<span id="score">
+0
+</span>
+</div>
+
+</div>
+
+<div class="progress-container">
+
+<div class="progress"
+id="progress">
+</div>
+
+</div>
+
+<div class="quiz-info">
+
+<div>
+Question 1/5
+</div>
+
+<div>
+⏰
+<span id="timer">
+15
+</span>s
+</div>
+
+</div>
+
+<div class="question-card">
+
+<div class="question">
+
+Which planet is known as
+the Red Planet?
+
+</div>
+
+</div>
+
+<div class="options">
+
+<div class="option"
+onclick="checkAnswer(this,false)">
+Venus
+</div>
+
+<div class="option"
+onclick="checkAnswer(this,true)">
+Mars
+</div>
+
+<div class="option"
+onclick="checkAnswer(this,false)">
+Jupiter
+</div>
+
+<div class="option"
+onclick="checkAnswer(this,false)">
+Saturn
+</div>
+
+</div>
+
+<div class="explanation"
+id="explanation">
+
+Mars is called the Red Planet
+because iron oxide on its surface
+gives it a reddish appearance.
+
+</div>
+
+<div class="xp-box"
+id="xpBox">
+
++0 XP
+
+</div>
+
+<div class="buttons">
+
+<button class="btn skip">
+
+Skip
+
+</button>
+
+<button class="btn bookmark">
+
+Bookmark
+
+</button>
+
+<button class="btn next">
+
+Next
+
+</button>
+
+</div>
+  <script>
+
+let score = 0;
+let currentQuestion = 0;
+let timer = 15;
+let xp = 0;
+
+const questions = [
+
+{
+question:
+"Which planet is known as the Red Planet?",
+
+options:[
+"Venus",
+"Mars",
+"Jupiter",
+"Saturn"
+],
+
+correct:1,
+
+explanation:
+"Mars is called the Red Planet because iron oxide gives it a reddish appearance."
+},
+
+{
+question:
+"What is the capital of India?",
+
+options:[
+"Mumbai",
+"Kolkata",
+"New Delhi",
+"Chennai"
+],
+
+correct:2,
+
+explanation:
+"New Delhi is the capital city of India."
+},
+
+{
+question:
+"Which language is used for web pages?",
+
+options:[
+"HTML",
+"Python",
+"Java",
+"C++"
+],
+
+correct:0,
+
+explanation:
+"HTML is the standard language for creating web pages."
+},
+
+{
+question:
+"What is 10 × 10?",
+
+options:[
+"10",
+"50",
+"100",
+"110"
+],
+
+correct:2,
+
+explanation:
+"10 multiplied by 10 equals 100."
+},
+
+{
+question:
+"Which ocean is the largest?",
+
+options:[
+"Indian",
+"Atlantic",
+"Pacific",
+"Arctic"
+],
+
+correct:2,
+
+explanation:
+"The Pacific Ocean is the largest ocean on Earth."
+}
+
+];
+
+function loadQuestion(){
+
+document.querySelector(".question")
+.innerText =
+questions[currentQuestion].question;
+
+const options =
+document.querySelector(".options");
+
+options.innerHTML = "";
+
+questions[currentQuestion]
+.options.forEach((option,index)=>{
+
+const div =
+document.createElement("div");
+
+div.classList.add("option");
+
+div.innerText = option;
+
+div.onclick = ()=>checkAnswer(
+div,
+index === questions[currentQuestion].correct
+);
+
+options.appendChild(div);
+
+});
+
+document.getElementById(
+"explanation"
+).classList.remove("show");
+
+document.getElementById(
+"progress"
+).style.width =
+((currentQuestion+1)
+/questions.length)*100
++"%";
+
+resetTimer();
+
+}
+
+function checkAnswer(
+element,
+isCorrect
+){
+
+const allOptions =
+document.querySelectorAll(".option");
+
+allOptions.forEach(option=>{
+
+option.style.pointerEvents =
+"none";
+
+});
+
+if(isCorrect){
+
+element.classList.add(
+"correct"
+);
+
+let timeBonus =
+timer;
+
+let earned =
+10 + timeBonus;
+
+score += earned;
+
+xp += earned;
+
+document.getElementById(
+"score"
+).innerText = score;
+
+document.getElementById(
+"xpBox"
+).innerText =
+"+"+earned+" XP";
+
+}
+else{
+
+element.classList.add(
+"wrong"
+);
+
+}
+
+document.getElementById(
+"explanation"
+).innerText =
+questions[currentQuestion]
+.explanation;
+
+document.getElementById(
+"explanation"
+).classList.add(
+"show"
+);
+
+}
+
+document.querySelector(
+".next"
+).onclick = ()=>{
+
+currentQuestion++;
+
+if(
+currentQuestion >=
+questions.length
+){
+
+finishQuiz();
+
+return;
+
+}
+
+loadQuestion();
+
+};
+
+function finishQuiz(){
+
+document.body.innerHTML =
+
+`
+
+<div style="
+
+display:flex;
+justify-content:center;
+align-items:center;
+min-height:100vh;
+padding:20px;
+
+">
+
+<div style="
+
+background:rgba(255,255,255,.08);
+padding:40px;
+border-radius:30px;
+text-align:center;
+max-width:500px;
+width:100%;
+
+">
+
+<h1>
+🏆 Quiz Completed
+</h1>
+
+<br>
+
+<h2>
+Final Score:
+${score}
+</h2>
+
+<br>
+
+<h2>
+XP Earned:
+${xp}
+</h2>
+
+<br>
+
+<p>
+
+Questions Completed:
+${questions.length}
+
+</p>
+
+<br>
+
+<button
+onclick="location.reload()"
+
+style="
+padding:15px 25px;
+border:none;
+border-radius:15px;
+cursor:pointer;
+background:#2563eb;
+color:white;
+font-weight:700;
+">
+
+Play Again
+
+</button>
+
+</div>
+
+</div>
+
+`;
+
+}
+
+function resetTimer(){
+
+clearInterval(window.quizTimer);
+
+timer = 15;
+
+document.getElementById(
+"timer"
+).innerText = timer;
+
+window.quizTimer =
+setInterval(()=>{
+
+timer--;
+
+document.getElementById(
+"timer"
+).innerText = timer;
+
+if(timer<=0){
+
+clearInterval(
+window.quizTimer
+);
+
+currentQuestion++;
+
+if(
+currentQuestion >=
+questions.length
+){
+
+finishQuiz();
+
+}
+else{
+
+loadQuestion();
+
+}
+
+}
+
+},1000);
+
+}
+
+document.querySelector(
+".skip"
+).onclick = ()=>{
+
+currentQuestion++;
+
+if(
+currentQuestion >=
+questions.length
+){
+
+finishQuiz();
+
+}
+else{
+
+loadQuestion();
+
+}
+
+};
+
+document.querySelector(
+".bookmark"
+).onclick = ()=>{
+
+alert(
+"Question Bookmarked ⭐"
+);
+
+};
+
+document.querySelector(
+".back-btn"
+).onclick = ()=>{
+
+window.location.href =
+"index.html";
+
+};
+
+loadQuestion();
+
+</script>
+
+</body>
+  </html>

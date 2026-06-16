@@ -1,0 +1,893 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width,
+initial-scale=1.0">
+
+<title>Leaderboard</title>
+
+<link rel="preconnect"
+href="https://fonts.googleapis.com">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+}
+
+body{
+
+background:linear-gradient(
+135deg,
+#0f172a,
+#1e293b,
+#312e81
+);
+
+color:white;
+
+padding:20px;
+
+min-height:100vh;
+
+}
+
+.header{
+
+text-align:center;
+
+margin-bottom:30px;
+
+}
+
+.header h1{
+
+font-size:32px;
+
+font-weight:800;
+
+}
+
+.header p{
+
+color:#cbd5e1;
+
+margin-top:10px;
+
+}
+
+.search-box{
+
+margin-bottom:25px;
+
+}
+
+.search-box input{
+
+width:100%;
+
+padding:15px;
+
+border:none;
+
+border-radius:15px;
+
+background:rgba(255,255,255,.08);
+
+color:white;
+
+font-size:14px;
+
+}
+
+.section-title{
+
+font-size:22px;
+
+font-weight:700;
+
+margin-bottom:15px;
+
+margin-top:25px;
+
+}
+
+.podium{
+
+display:flex;
+
+justify-content:center;
+
+align-items:flex-end;
+
+gap:10px;
+
+margin-bottom:30px;
+
+}
+
+.place{
+
+width:100px;
+
+text-align:center;
+
+border-radius:20px;
+
+background:rgba(255,255,255,.08);
+
+padding:15px;
+
+transition:.3s;
+
+}
+
+.place:hover{
+
+transform:translateY(-8px);
+
+}
+
+.first{
+
+height:180px;
+
+background:
+linear-gradient(
+45deg,
+#f59e0b,
+#fbbf24
+);
+
+}
+
+.second{
+
+height:140px;
+
+background:
+linear-gradient(
+45deg,
+#94a3b8,
+#cbd5e1
+);
+
+color:black;
+
+}
+
+.third{
+
+height:120px;
+
+background:
+linear-gradient(
+45deg,
+#b45309,
+#d97706
+);
+
+}
+
+.rank{
+
+font-size:24px;
+
+font-weight:800;
+
+margin-bottom:10px;
+
+}
+
+.player{
+
+font-size:14px;
+
+font-weight:700;
+
+}
+
+.xp{
+
+margin-top:8px;
+
+font-size:13px;
+
+}
+
+.leaderboard-card{
+
+background:rgba(255,255,255,.08);
+
+padding:18px;
+
+border-radius:18px;
+
+margin-bottom:12px;
+
+display:flex;
+
+justify-content:space-between;
+
+align-items:center;
+
+transition:.3s;
+
+}
+
+.leaderboard-card:hover{
+
+transform:translateX(8px);
+
+}
+
+.left{
+
+display:flex;
+
+align-items:center;
+
+gap:15px;
+
+}
+
+.position{
+
+font-size:20px;
+
+font-weight:800;
+
+color:#60a5fa;
+
+}
+
+.name{
+
+font-weight:600;
+
+}
+
+.score{
+
+font-weight:700;
+
+}
+
+.tabs{
+
+display:flex;
+
+gap:10px;
+
+overflow:auto;
+
+margin-bottom:20px;
+
+}
+
+.tabs::-webkit-scrollbar{
+
+display:none;
+
+}
+
+.tab{
+
+padding:10px 18px;
+
+border-radius:15px;
+
+background:rgba(255,255,255,.08);
+
+cursor:pointer;
+
+white-space:nowrap;
+
+}
+
+.active-tab{
+
+background:#2563eb;
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="header">
+
+<h1>
+🏆 Leaderboard
+</h1>
+
+<p>
+Compete with top players
+and climb the rankings.
+</p>
+
+</div>
+
+<div class="search-box">
+
+<input
+type="text"
+placeholder="Search player...">
+
+</div>
+
+<div class="section-title">
+
+🥇 Top Players
+
+</div>
+
+<div class="podium">
+
+<div class="place second">
+
+<div class="rank">
+🥈
+</div>
+
+<div class="player">
+John
+</div>
+
+<div class="xp">
+1450 XP
+</div>
+
+</div>
+
+<div class="place first">
+
+<div class="rank">
+🥇
+</div>
+
+<div class="player">
+Alex
+</div>
+
+<div class="xp">
+1800 XP
+</div>
+
+</div>
+
+<div class="place third">
+
+<div class="rank">
+🥉
+</div>
+
+<div class="player">
+Sarah
+</div>
+
+<div class="xp">
+1390 XP
+</div>
+
+</div>
+
+</div>
+
+<div class="tabs">
+
+<div class="tab active-tab">
+Global
+</div>
+
+<div class="tab">
+Weekly
+</div>
+
+<div class="tab">
+Monthly
+</div>
+
+<div class="tab">
+Friends
+</div>
+
+</div>
+
+<div class="section-title">
+
+🌍 Global Rankings
+
+</div>
+
+<div class="leaderboard-card">
+
+<div class="left">
+
+<div class="position">
+1
+</div>
+
+<div class="name">
+Alex
+</div>
+
+</div>
+
+<div class="score">
+1800 XP
+</div>
+
+</div>
+
+<div class="leaderboard-card">
+
+<div class="left">
+
+<div class="position">
+2
+</div>
+
+<div class="name">
+John
+</div>
+
+</div>
+
+<div class="score">
+1450 XP
+</div>
+
+</div>
+
+<div class="leaderboard-card">
+
+<div class="left">
+
+<div class="position">
+3
+</div>
+
+<div class="name">
+Sarah
+</div>
+
+</div>
+
+<div class="score">
+1390 XP
+</div>
+
+</div>
+
+<div class="leaderboard-card">
+
+<div class="left">
+
+<div class="position">
+4
+</div>
+
+<div class="name">
+Satyajit
+</div>
+
+</div>
+
+<div class="score">
+1250 XP
+</div>
+
+</div>
+<!-- WEEKLY RANKINGS -->
+
+<div class="section-title">
+
+📈 Weekly Rankings
+
+</div>
+
+<div class="leaderboard-card">
+
+<div class="left">
+
+<div class="position">
+🔥
+</div>
+
+<div class="name">
+Satyajit
+</div>
+
+</div>
+
+<div class="score">
++320 XP
+</div>
+
+</div>
+
+<div class="leaderboard-card">
+
+<div class="left">
+
+<div class="position">
+🔥
+</div>
+
+<div class="name">
+Alex
+</div>
+
+</div>
+
+<div class="score">
++280 XP
+</div>
+
+</div>
+
+<div class="leaderboard-card">
+
+<div class="left">
+
+<div class="position">
+🔥
+</div>
+
+<div class="name">
+John
+</div>
+
+</div>
+
+<div class="score">
++260 XP
+</div>
+
+</div>
+
+<!-- STREAK LEADERBOARD -->
+
+<div class="section-title">
+
+🔥 Longest Streaks
+
+</div>
+
+<div class="leaderboard-card">
+
+<div class="left">
+
+<div class="position">
+1
+</div>
+
+<div class="name">
+Alex
+</div>
+
+</div>
+
+<div class="score">
+45 Days
+</div>
+
+</div>
+
+<div class="leaderboard-card">
+
+<div class="left">
+
+<div class="position">
+2
+</div>
+
+<div class="name">
+Satyajit
+</div>
+
+</div>
+
+<div class="score">
+22 Days
+</div>
+
+</div>
+
+<div class="leaderboard-card">
+
+<div class="left">
+
+<div class="position">
+3
+</div>
+
+<div class="name">
+Sarah
+</div>
+
+</div>
+
+<div class="score">
+18 Days
+</div>
+
+</div>
+
+<!-- XP PROGRESS -->
+
+<div class="section-title">
+
+📊 XP Progress
+
+</div>
+
+<div class="leaderboard-card">
+
+<div style="width:100%;">
+
+<div style="
+display:flex;
+justify-content:space-between;
+margin-bottom:10px;
+">
+
+<span>
+Current XP
+</span>
+
+<span id="xpCounter">
+1250
+</span>
+
+</div>
+
+<div style="
+height:12px;
+background:#334155;
+border-radius:20px;
+overflow:hidden;
+">
+
+<div id="xpBar"
+style="
+height:100%;
+width:75%;
+background:
+linear-gradient(
+90deg,
+#06b6d4,
+#3b82f6
+);
+">
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- YOUR RANK -->
+
+<div class="section-title">
+
+🎯 Your Position
+
+</div>
+
+<div id="myRank"
+class="leaderboard-card"
+style="
+border:2px solid #2563eb;
+">
+
+<div class="left">
+
+<div class="position">
+4
+</div>
+
+<div class="name">
+Satyajit
+</div>
+
+</div>
+
+<div class="score">
+1250 XP
+</div>
+
+</div>
+
+<!-- BACK BUTTON -->
+
+<div style="
+margin-top:25px;
+">
+
+<button id="backBtn"
+style="
+
+width:100%;
+padding:15px;
+border:none;
+border-radius:15px;
+background:#2563eb;
+color:white;
+font-weight:700;
+cursor:pointer;
+
+">
+
+← Back To Home
+
+</button>
+
+</div>
+
+<script>
+
+// SEARCH PLAYERS
+
+const searchInput =
+document.querySelector("input");
+
+searchInput.addEventListener(
+"keyup",
+function(){
+
+const value =
+this.value.toLowerCase();
+
+const cards =
+document.querySelectorAll(
+".leaderboard-card"
+);
+
+cards.forEach(card=>{
+
+const text =
+card.innerText.toLowerCase();
+
+if(
+text.includes(value)
+){
+
+card.style.display =
+"flex";
+
+}
+else{
+
+card.style.display =
+"none";
+
+}
+
+});
+
+});
+
+// TAB SWITCHING
+
+const tabs =
+document.querySelectorAll(
+".tab"
+);
+
+tabs.forEach(tab=>{
+
+tab.addEventListener(
+"click",
+()=>{
+
+tabs.forEach(t=>{
+
+t.classList.remove(
+"active-tab"
+);
+
+});
+
+tab.classList.add(
+"active-tab"
+);
+
+});
+
+});
+
+// XP COUNTER ANIMATION
+
+let count = 0;
+
+const target = 1250;
+
+const counter =
+document.getElementById(
+"xpCounter"
+);
+
+const interval =
+setInterval(()=>{
+
+count += 10;
+
+counter.innerText =
+count;
+
+if(
+count >= target
+){
+
+counter.innerText =
+target;
+
+clearInterval(
+interval
+);
+
+}
+
+},10);
+
+// PODIUM ANIMATION
+
+const podiums =
+document.querySelectorAll(
+".place"
+);
+
+podiums.forEach(
+(podium,index)=>{
+
+podium.style.opacity = 0;
+
+setTimeout(()=>{
+
+podium.style.transition =
+".8s";
+
+podium.style.opacity = 1;
+
+podium.style.transform =
+"translateY(0px)";
+
+},index*250);
+
+});
+
+// BACK BUTTON
+
+document
+.getElementById(
+"backBtn"
+)
+.addEventListener(
+"click",
+()=>{
+
+window.location.href =
+"index.html";
+
+});
+
+</script>
+
+</body>
+</html>

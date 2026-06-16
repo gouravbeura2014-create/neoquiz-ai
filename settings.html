@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width,
+initial-scale=1.0">
+
+<title>Settings</title>
+
+<link rel="preconnect"
+href="https://fonts.googleapis.com">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+}
+
+body{
+
+background:linear-gradient(
+135deg,
+#0f172a,
+#1e293b,
+#312e81
+);
+
+color:white;
+
+padding:20px;
+
+min-height:100vh;
+
+transition:.4s;
+
+}
+
+.header{
+
+text-align:center;
+
+margin-bottom:25px;
+
+}
+
+.header h1{
+
+font-size:32px;
+
+font-weight:800;
+
+}
+
+.header p{
+
+margin-top:10px;
+
+color:#cbd5e1;
+
+}
+
+.setting-card{
+
+background:rgba(255,255,255,.08);
+
+padding:20px;
+
+border-radius:20px;
+
+margin-bottom:15px;
+
+backdrop-filter:blur(15px);
+
+transition:.3s;
+
+}
+
+.setting-card:hover{
+
+transform:translateY(-5px);
+
+}
+
+.row{
+
+display:flex;
+
+justify-content:space-between;
+
+align-items:center;
+
+}
+
+.title{
+
+font-weight:700;
+
+font-size:16px;
+
+}
+
+.desc{
+
+font-size:13px;
+
+color:#cbd5e1;
+
+margin-top:5px;
+
+}
+
+.switch{
+
+position:relative;
+
+width:55px;
+
+height:28px;
+
+}
+
+.switch input{
+
+display:none;
+
+}
+
+.slider{
+
+position:absolute;
+
+top:0;
+left:0;
+right:0;
+bottom:0;
+
+background:#475569;
+
+border-radius:50px;
+
+cursor:pointer;
+
+transition:.4s;
+
+}
+
+.slider:before{
+
+content:"";
+
+position:absolute;
+
+height:22px;
+width:22px;
+
+left:3px;
+top:3px;
+
+background:white;
+
+border-radius:50%;
+
+transition:.4s;
+
+}
+
+input:checked + .slider{
+
+background:#2563eb;
+
+}
+
+input:checked + .slider:before{
+
+transform:translateX(27px);
+
+}
+
+select{
+
+padding:10px;
+
+border:none;
+
+border-radius:12px;
+
+background:#334155;
+
+color:white;
+
+}
+
+.btn{
+
+width:100%;
+
+padding:15px;
+
+border:none;
+
+border-radius:15px;
+
+cursor:pointer;
+
+font-weight:700;
+
+margin-top:10px;
+
+}
+
+.reset{
+
+background:#dc2626;
+
+color:white;
+
+}
+
+.home{
+
+background:#2563eb;
+
+color:white;
+
+}
+
+.version{
+
+text-align:center;
+
+margin-top:30px;
+
+color:#94a3b8;
+
+font-size:13px;
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="header">
+
+<h1>
+⚙ Settings
+</h1>
+
+<p>
+Customize your NeoQuiz experience
+</p>
+
+</div>
+
+<div class="setting-card">
+
+<div class="row">
+
+<div>
+
+<div class="title">
+🌙 Dark Mode
+</div>
+
+<div class="desc">
+Enable dark theme
+</div>
+
+</div>
+
+<label class="switch">
+
+<input
+type="checkbox"
+id="darkMode">
+
+<span class="slider"></span>
+
+</label>
+
+</div>
+
+</div>
+
+<div class="setting-card">
+
+<div class="row">
+
+<div>
+
+<div class="title">
+🔊 Sound Effects
+</div>
+
+<div class="desc">
+Play quiz sounds
+</div>
+
+</div>
+
+<label class="switch">
+
+<input
+type="checkbox"
+id="soundEffects"
+checked>
+
+<span class="slider"></span>
+
+</label>
+
+</div>
+
+</div>
+
+<div class="setting-card">
+
+<div class="row">
+
+<div>
+
+<div class="title">
+🎵 Background Music
+</div>
+
+<div class="desc">
+Play background music
+</div>
+
+</div>
+
+<label class="switch">
+
+<input
+type="checkbox"
+id="music">
+
+<span class="slider"></span>
+
+</label>
+
+</div>
+
+</div>
+
+<div class="setting-card">
+
+<div class="row">
+
+<div>
+
+<div class="title">
+🔔 Notifications
+</div>
+
+<div class="desc">
+Receive reminders
+</div>
+
+</div>
+
+<label class="switch">
+
+<input
+type="checkbox"
+id="notifications"
+checked>
+
+<span class="slider"></span>
+
+</label>
+
+</div>
+
+</div>
+
+<div class="setting-card">
+
+<div class="row">
+
+<div>
+
+<div class="title">
+🌍 Language
+</div>
+
+<div class="desc">
+Choose language
+</div>
+
+</div>
+
+<select id="language">
+
+<option>English</option>
+<option>Hindi</option>
+<option>Odia</option>
+
+</select>
+
+</div>
+
+</div>
+<!-- ACCOUNT -->
+
+<div class="setting-card">
+
+<div class="title">
+👤 Account
+</div>
+
+<div class="desc">
+Current User
+</div>
+
+<br>
+
+<div id="currentUser">
+Guest
+</div>
+
+</div>
+
+<!-- RESET DATA -->
+
+<button
+class="btn reset"
+onclick="resetData()">
+
+🗑 Reset All Data
+
+</button>
+
+<!-- HOME BUTTON -->
+
+<button
+class="btn home"
+onclick="goHome()">
+
+🏠 Back To Home
+
+</button>
+
+<!-- APP INFO -->
+
+<div class="setting-card">
+
+<div class="title">
+📱 NeoQuiz Pro
+</div>
+
+<div class="desc">
+Premium Quiz Platform
+</div>
+
+<br>
+
+<div>
+Version 1.0.0
+</div>
+
+</div>
+
+<div class="version">
+
+Made with ❤️ by NeoQuiz Team
+
+</div>
+
+<script>
+
+// LOAD USER
+
+const currentUser =
+localStorage.getItem(
+"currentUser"
+) || "Guest";
+
+document.getElementById(
+"currentUser"
+).innerText =
+currentUser;
+
+// LOAD SETTINGS
+
+if(
+localStorage.getItem(
+"darkMode"
+)==="true"
+){
+
+document.getElementById(
+"darkMode"
+).checked = true;
+
+enableDarkMode();
+
+}
+
+if(
+localStorage.getItem(
+"soundEffects"
+)==="false"
+){
+
+document.getElementById(
+"soundEffects"
+).checked = false;
+
+}
+
+if(
+localStorage.getItem(
+"music"
+)==="true"
+){
+
+document.getElementById(
+"music"
+).checked = true;
+
+}
+
+if(
+localStorage.getItem(
+"notifications"
+)==="false"
+){
+
+document.getElementById(
+"notifications"
+).checked = false;
+
+}
+
+// DARK MODE
+
+document.getElementById(
+"darkMode"
+).addEventListener(
+"change",
+function(){
+
+localStorage.setItem(
+"darkMode",
+this.checked
+);
+
+if(this.checked){
+
+enableDarkMode();
+
+}else{
+
+disableDarkMode();
+
+}
+
+});
+
+function enableDarkMode(){
+
+document.body.style.background =
+"#0f172a";
+
+}
+
+function disableDarkMode(){
+
+document.body.style.background =
+"linear-gradient(135deg,#0f172a,#1e293b,#312e81)";
+
+}
+
+// SOUND
+
+document.getElementById(
+"soundEffects"
+).addEventListener(
+"change",
+function(){
+
+localStorage.setItem(
+"soundEffects",
+this.checked
+);
+
+});
+
+// MUSIC
+
+document.getElementById(
+"music"
+).addEventListener(
+"change",
+function(){
+
+localStorage.setItem(
+"music",
+this.checked
+);
+
+});
+
+// NOTIFICATIONS
+
+document.getElementById(
+"notifications"
+).addEventListener(
+"change",
+function(){
+
+localStorage.setItem(
+"notifications",
+this.checked
+);
+
+});
+
+// LANGUAGE
+
+document.getElementById(
+"language"
+).addEventListener(
+"change",
+function(){
+
+localStorage.setItem(
+"language",
+this.value
+);
+
+});
+
+const savedLanguage =
+localStorage.getItem(
+"language"
+);
+
+if(savedLanguage){
+
+document.getElementById(
+"language"
+).value =
+savedLanguage;
+
+}
+
+// RESET
+
+function resetData(){
+
+let confirmReset =
+confirm(
+"Delete all app data?"
+);
+
+if(confirmReset){
+
+localStorage.clear();
+
+alert(
+"Data Reset Successful"
+);
+
+location.reload();
+
+}
+
+}
+
+// HOME
+
+function goHome(){
+
+window.location.href =
+"index.html";
+
+}
+
+</script>
+
+</body>
+</html>

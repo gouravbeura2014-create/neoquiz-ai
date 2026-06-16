@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width,
+initial-scale=1.0">
+
+<title>AI Question Generator</title>
+
+<link rel="preconnect"
+href="https://fonts.googleapis.com">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+}
+
+body{
+
+background:linear-gradient(
+135deg,
+#0f172a,
+#1e293b,
+#312e81
+);
+
+color:white;
+
+min-height:100vh;
+
+padding:20px;
+
+}
+
+.container{
+
+max-width:900px;
+
+margin:auto;
+
+}
+
+.header{
+
+text-align:center;
+
+margin-bottom:30px;
+
+}
+
+.header h1{
+
+font-size:32px;
+
+font-weight:800;
+
+}
+
+.header p{
+
+color:#cbd5e1;
+
+margin-top:10px;
+
+}
+
+.card{
+
+background:rgba(255,255,255,.08);
+
+padding:25px;
+
+border-radius:25px;
+
+backdrop-filter:blur(15px);
+
+margin-bottom:20px;
+
+}
+
+.input{
+
+width:100%;
+
+padding:15px;
+
+border:none;
+
+border-radius:15px;
+
+background:rgba(255,255,255,.08);
+
+color:white;
+
+margin-top:10px;
+
+margin-bottom:15px;
+
+}
+
+.btn{
+
+padding:15px 20px;
+
+border:none;
+
+border-radius:15px;
+
+cursor:pointer;
+
+font-weight:700;
+
+background:#2563eb;
+
+color:white;
+
+width:100%;
+
+}
+
+.question-card{
+
+background:rgba(255,255,255,.08);
+
+padding:20px;
+
+border-radius:20px;
+
+margin-top:15px;
+
+animation:fadeIn .5s ease;
+
+}
+
+@keyframes fadeIn{
+
+from{
+opacity:0;
+transform:translateY(20px);
+}
+
+to{
+opacity:1;
+transform:translateY(0);
+}
+
+}
+
+.option{
+
+margin-top:8px;
+
+padding:10px;
+
+background:rgba(255,255,255,.05);
+
+border-radius:10px;
+
+}
+
+.actions{
+
+display:flex;
+
+gap:10px;
+
+margin-top:20px;
+
+}
+
+.save-btn{
+
+background:#10b981;
+
+}
+
+.home-btn{
+
+background:#475569;
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="header">
+
+<h1>
+🤖 AI Question Generator
+</h1>
+
+<p>
+Generate quiz questions instantly
+</p>
+
+</div>
+
+<div class="card">
+
+<label>
+Topic
+</label>
+
+<input
+id="topic"
+class="input"
+placeholder="Example: Science">
+
+<label>
+Number of Questions
+</label>
+
+<input
+id="count"
+class="input"
+type="number"
+value="5">
+
+<button
+class="btn"
+onclick="generateQuestions()">
+
+Generate Questions
+
+</button>
+
+</div>
+  <div class="actions">
+
+<button
+class="btn save-btn"
+onclick="saveQuestions()">
+
+💾 Save Questions
+
+</button>
+
+<button
+class="btn home-btn"
+onclick="goHome()">
+
+🏠 Home
+
+</button>
+
+</div>
+
+</div>
+
+<script>
+
+let generatedQuestions = [];
+
+function generateQuestions(){
+
+const topic =
+document.getElementById(
+"topic"
+).value;
+
+const count =
+parseInt(
+document.getElementById(
+"count"
+).value
+);
+
+if(topic.trim()===""){
+
+alert(
+"Please enter a topic."
+);
+
+return;
+
+}
+
+generatedQuestions = [];
+
+const results =
+document.getElementById(
+"results"
+);
+
+results.innerHTML = "";
+
+for(let i=1;i<=count;i++){
+
+const question = {
+
+question:
+`What is an important concept in ${topic}? (${i})`,
+
+options:[
+"Option A",
+"Option B",
+"Option C",
+"Option D"
+],
+
+correct:0
+
+};
+
+generatedQuestions.push(
+question
+);
+
+const card =
+document.createElement(
+"div"
+);
+
+card.className =
+"question-card";
+
+card.innerHTML =
+
+`
+<h3>
+Q${i}.
+${question.question}
+</h3>
+
+<div class="option">
+A. Option A
+</div>
+
+<div class="option">
+B. Option B
+</div>
+
+<div class="option">
+C. Option C
+</div>
+
+<div class="option">
+D. Option D
+</div>
+`;
+
+results.appendChild(
+card
+);
+
+}
+
+alert(
+count +
+" questions generated!"
+);
+
+}
+
+// SAVE
+
+function saveQuestions(){
+
+if(
+generatedQuestions.length===0
+){
+
+alert(
+"No questions generated."
+);
+
+return;
+
+}
+
+localStorage.setItem(
+"aiQuestions",
+JSON.stringify(
+generatedQuestions
+)
+);
+
+alert(
+"Questions saved successfully ✅"
+);
+
+}
+
+// HOME
+
+function goHome(){
+
+window.location.href =
+"index.html";
+
+}
+
+// LOAD PREVIOUS
+
+const oldQuestions =
+localStorage.getItem(
+"aiQuestions"
+);
+
+if(oldQuestions){
+
+console.log(
+JSON.parse(
+oldQuestions
+)
+);
+
+}
+
+</script>
+
+</body>
+</html>
+
+<div id="results"></div>
+<div class="actions">
+
+<button
+class="btn save-btn"
+onclick="saveQuestions()">
+
+💾 Save Questions
+
+</button>
+
+<button
+class="btn home-btn"
+onclick="goHome()">
+
+🏠 Home
+
+</button>
+
+</div>
+
+</div>
+
+<script>
+
+let generatedQuestions = [];
+
+function generateQuestions(){
+
+const topic =
+document.getElementById(
+"topic"
+).value;
+
+const count =
+parseInt(
+document.getElementById(
+"count"
+).value
+);
+
+if(topic.trim()===""){
+
+alert(
+"Please enter a topic."
+);
+
+return;
+
+}
+
+generatedQuestions = [];
+
+const results =
+document.getElementById(
+"results"
+);
+
+results.innerHTML = "";
+
+for(let i=1;i<=count;i++){
+
+const question = {
+
+question:
+`What is an important concept in ${topic}? (${i})`,
+
+options:[
+"Option A",
+"Option B",
+"Option C",
+"Option D"
+],
+
+correct:0
+
+};
+
+generatedQuestions.push(
+question
+);
+
+const card =
+document.createElement(
+"div"
+);
+
+card.className =
+"question-card";
+
+card.innerHTML =
+
+`
+<h3>
+Q${i}.
+${question.question}
+</h3>
+
+<div class="option">
+A. Option A
+</div>
+
+<div class="option">
+B. Option B
+</div>
+
+<div class="option">
+C. Option C
+</div>
+
+<div class="option">
+D. Option D
+</div>
+`;
+
+results.appendChild(
+card
+);
+
+}
+
+alert(
+count +
+" questions generated!"
+);
+
+}
+
+// SAVE
+
+function saveQuestions(){
+
+if(
+generatedQuestions.length===0
+){
+
+alert(
+"No questions generated."
+);
+
+return;
+
+}
+
+localStorage.setItem(
+"aiQuestions",
+JSON.stringify(
+generatedQuestions
+)
+);
+
+alert(
+"Questions saved successfully ✅"
+);
+
+}
+
+// HOME
+
+function goHome(){
+
+window.location.href =
+"index.html";
+
+}
+
+// LOAD PREVIOUS
+
+const oldQuestions =
+localStorage.getItem(
+"aiQuestions"
+);
+
+if(oldQuestions){
+
+console.log(
+JSON.parse(
+oldQuestions
+)
+);
+
+}
+
+</script>
+
+</body>
+</html>
+  

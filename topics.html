@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width,
+initial-scale=1.0">
+
+<title>Topics</title>
+
+<link rel="preconnect"
+href="https://fonts.googleapis.com">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+}
+
+body{
+
+background:linear-gradient(
+135deg,
+#0f172a,
+#1e293b,
+#312e81
+);
+
+color:white;
+
+padding:20px;
+
+min-height:100vh;
+
+}
+
+.header{
+
+text-align:center;
+
+margin-bottom:25px;
+
+}
+
+.header h1{
+
+font-size:32px;
+
+font-weight:800;
+
+}
+
+.header p{
+
+color:#cbd5e1;
+
+margin-top:10px;
+
+}
+
+.search{
+
+margin-bottom:20px;
+
+}
+
+.search input{
+
+width:100%;
+
+padding:15px;
+
+border:none;
+
+border-radius:15px;
+
+background:rgba(255,255,255,.08);
+
+color:white;
+
+font-size:14px;
+
+}
+
+.filters{
+
+display:flex;
+
+gap:10px;
+
+overflow:auto;
+
+margin-bottom:20px;
+
+}
+
+.filters::-webkit-scrollbar{
+
+display:none;
+
+}
+
+.filter{
+
+padding:10px 18px;
+
+border-radius:15px;
+
+background:rgba(255,255,255,.08);
+
+cursor:pointer;
+
+white-space:nowrap;
+
+}
+
+.active{
+
+background:#2563eb;
+
+}
+
+.topics-grid{
+
+display:grid;
+
+grid-template-columns:
+repeat(auto-fit,minmax(220px,1fr));
+
+gap:15px;
+
+}
+
+.topic{
+
+background:rgba(255,255,255,.08);
+
+padding:20px;
+
+border-radius:20px;
+
+transition:.3s;
+
+cursor:pointer;
+
+}
+
+.topic:hover{
+
+transform:translateY(-8px);
+
+}
+
+.topic-icon{
+
+font-size:40px;
+
+margin-bottom:10px;
+
+}
+
+.topic-title{
+
+font-size:18px;
+
+font-weight:700;
+
+}
+
+.topic-desc{
+
+font-size:13px;
+
+color:#cbd5e1;
+
+margin-top:8px;
+
+}
+
+.start-btn{
+
+margin-top:15px;
+
+padding:10px 15px;
+
+border:none;
+
+border-radius:12px;
+
+background:#2563eb;
+
+color:white;
+
+cursor:pointer;
+
+font-weight:700;
+
+width:100%;
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="header">
+
+<h1>
+📚 Quiz Topics
+</h1>
+
+<p>
+Choose a topic and start learning.
+</p>
+
+</div>
+
+<div class="search">
+
+<input
+type="text"
+id="searchBox"
+placeholder="Search topic...">
+
+</div>
+
+<div class="filters">
+
+<div class="filter active">
+All
+</div>
+
+<div class="filter">
+Easy
+</div>
+
+<div class="filter">
+Medium
+</div>
+
+<div class="filter">
+Hard
+</div>
+
+</div>
+
+<div class="topics-grid"
+id="topicsGrid">
+
+<div class="topic">
+
+<div class="topic-icon">
+🚀
+</div>
+
+<div class="topic-title">
+Science
+</div>
+
+<div class="topic-desc">
+Physics, Chemistry, Biology
+</div>
+
+<button
+class="start-btn"
+onclick="startQuiz('Science')">
+
+Start Quiz
+
+</button>
+
+</div>
+
+<div class="topic">
+
+<div class="topic-icon">
+🧮
+</div>
+
+<div class="topic-title">
+Mathematics
+</div>
+
+<div class="topic-desc">
+Algebra, Geometry, Arithmetic
+</div>
+
+<button
+class="start-btn"
+onclick="startQuiz('Math')">
+
+Start Quiz
+
+</button>
+
+</div>
+
+<div class="topic">
+
+<div class="topic-icon">
+🤖
+</div>
+
+<div class="topic-title">
+AI & Technology
+</div>
+
+<div class="topic-desc">
+Artificial Intelligence
+</div>
+
+<button
+class="start-btn"
+onclick="startQuiz('AI')">
+
+Start Quiz
+
+</button>
+
+</div>
+
+<div class="topic">
+
+<div class="topic-icon">
+🌎
+</div>
+
+<div class="topic-title">
+Geography
+</div>
+
+<div class="topic-desc">
+Countries and Capitals
+</div>
+
+<button
+class="start-btn"
+onclick="startQuiz('Geography')">
+
+Start Quiz
+
+</button>
+
+</div>
+  <div class="topic">
+
+<div class="topic-icon">
+🏛️
+</div>
+
+<div class="topic-title">
+History
+</div>
+
+<div class="topic-desc">
+Ancient, Medieval & Modern
+</div>
+
+<button
+class="start-btn"
+onclick="startQuiz('History')">
+
+Start Quiz
+
+</button>
+
+</div>
+
+<div class="topic">
+
+<div class="topic-icon">
+🧠
+</div>
+
+<div class="topic-title">
+General Knowledge
+</div>
+
+<div class="topic-desc">
+Mixed Trivia Questions
+</div>
+
+<button
+class="start-btn"
+onclick="startQuiz('GK')">
+
+Start Quiz
+
+</button>
+
+</div>
+
+<div class="topic">
+
+<div class="topic-icon">
+💻
+</div>
+
+<div class="topic-title">
+Computer Science
+</div>
+
+<div class="topic-desc">
+Programming & Technology
+</div>
+
+<button
+class="start-btn"
+onclick="startQuiz('Computer')">
+
+Start Quiz
+
+</button>
+
+</div>
+
+<div class="topic">
+
+<div class="topic-icon">
+📖
+</div>
+
+<div class="topic-title">
+English
+</div>
+
+<div class="topic-desc">
+Grammar & Vocabulary
+</div>
+
+<button
+class="start-btn"
+onclick="startQuiz('English')">
+
+Start Quiz
+
+</button>
+
+</div>
+
+</div>
+
+<br>
+
+<button
+class="start-btn"
+onclick="goHome()">
+
+🏠 Back To Home
+
+</button>
+
+<script>
+
+// SEARCH
+
+document
+.getElementById("searchBox")
+.addEventListener(
+"keyup",
+function(){
+
+let value =
+this.value.toLowerCase();
+
+let topics =
+document.querySelectorAll(".topic");
+
+topics.forEach(topic=>{
+
+let text =
+topic.innerText.toLowerCase();
+
+if(text.includes(value)){
+
+topic.style.display =
+"block";
+
+}
+else{
+
+topic.style.display =
+"none";
+
+}
+
+});
+
+});
+
+// FILTER BUTTONS
+
+const filters =
+document.querySelectorAll(
+".filter"
+);
+
+filters.forEach(filter=>{
+
+filter.addEventListener(
+"click",
+()=>{
+
+filters.forEach(f=>{
+
+f.classList.remove(
+"active"
+);
+
+});
+
+filter.classList.add(
+"active"
+);
+
+});
+
+});
+
+// SAVE TOPIC
+
+function startQuiz(topic){
+
+localStorage.setItem(
+"selectedTopic",
+topic
+);
+
+alert(
+topic +
+" Quiz Selected 🚀"
+);
+
+window.location.href =
+"quiz.html";
+
+}
+
+// HOME BUTTON
+
+function goHome(){
+
+window.location.href =
+"index.html";
+
+}
+
+// ANIMATION
+
+const topicCards =
+document.querySelectorAll(
+".topic"
+);
+
+topicCards.forEach(
+(card,index)=>{
+
+card.style.opacity = 0;
+card.style.transform =
+"translateY(20px)";
+
+setTimeout(()=>{
+
+card.style.transition =
+".6s";
+
+card.style.opacity = 1;
+
+card.style.transform =
+"translateY(0px)";
+
+},index*120);
+
+});
+
+</script>
+
+</body>
+</html>
